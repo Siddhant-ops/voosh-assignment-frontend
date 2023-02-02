@@ -224,15 +224,23 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order) => (
-                <tr key={order._id}>
-                  <td className="border px-4 py-2">{order._id}</td>
-                  <td className="border px-4 py-2">
-                    {parseDate(order.createdAt)}
+              {orders && orders.length !== 0 ? (
+                orders.map((order) => (
+                  <tr key={order._id}>
+                    <td className="border px-4 py-2">{order._id}</td>
+                    <td className="border px-4 py-2">
+                      {parseDate(order.createdAt)}
+                    </td>
+                    <td className="border px-4 py-2">{order.total}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={3} className="border px-4 py-2">
+                    No Orders
                   </td>
-                  <td className="border px-4 py-2">{order.total}</td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>
